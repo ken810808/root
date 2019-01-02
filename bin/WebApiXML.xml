@@ -1,0 +1,1568 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SSC.API</name>
+    </assembly>
+    <members>
+        <member name="M:SSC.API.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,SSC.API.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:SSC.API.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:SSC.API.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:SSC.API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SSC.API.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:SSC.API.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:SSC.API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:SSC.API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SSC.API.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:SSC.API.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,SSC.API.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,SSC.API.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(SSC.API.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:SSC.API.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},SSC.API.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:SSC.API.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:SSC.API.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleKey.#ctor(SSC.API.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:SSC.API.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,SSC.API.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:SSC.API.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:SSC.API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SSC.API.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:SSC.API.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SSC.API.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="P:SSC.API.Common.Security.DefaultEncoding">
+            <summary>
+            默认编码
+            </summary>
+        </member>
+        <member name="M:SSC.API.Common.Security.HashEncrypt(System.Security.Cryptography.HashAlgorithm,System.String,System.Text.Encoding)">
+            <summary>
+            哈希加密算法
+            </summary>
+            <param name="hashAlgorithm">所有加密哈希算法实现均必须从中派生的基类</param>
+            <param name="input">待加密的字符串 </param>
+            <param name="encoding">字符编码，为 null 时采用默认编码（UTF-8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Common.Security.Md5(System.String)">
+            <summary>
+            MD5 加密，默认编码UTF8
+            </summary>
+            <param name="input">待加密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsEqual(System.String,System.String)">
+            <summary>
+            Determines whether the specified target is equal with StringComparison.InvariantCultureIgnoreCase.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="target">The target.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsNullOrEmpty(System.String)">
+            <summary>
+                A nicer way of calling <see cref="M:System.String.IsNullOrEmpty(System.String)" />
+            </summary>
+            <param name="value">The string to test.</param>
+            <returns>true if the value parameter is null or an empty string (""); otherwise, false.</returns>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsNotNullOrEmpty(System.String)">
+            <summary>
+                A nicer way of calling the inverse of <see cref="M:System.String.IsNullOrEmpty(System.String)" />
+            </summary>
+            <param name="value">The string to test.</param>
+            <returns>true if the value parameter is not null or an empty string (""); otherwise, false.</returns>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.SplitToList(System.String,System.Char[])">
+            <summary>
+            将字符串分割成List
+            </summary>
+            <param name="value"></param>
+            <param name="separator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.FormatWith(System.String,System.Object[])">
+            <summary>
+                A nicer way of calling <see cref="M:System.String.Format(System.String,System.Object[])" />
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+            <returns>
+                A copy of format in which the format items have been replaced by the string representation of the
+                corresponding objects in args.
+            </returns>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.Contains(System.String,System.String,System.StringComparison)">
+            <summary>
+                Checks if the <paramref name="source" /> contains the <paramref name="input" /> based on the provided
+                <paramref name="comparison" /> rules.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.DoContains(System.String,System.String)">
+            <summary>
+            Check that string contains with StringComparison.InvariantCultureIgnoreCase
+            </summary>
+            <param name="source">The source.</param>
+            <param name="target">The target.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsUrl(System.String)">
+            <summary>
+                Validates whether the provided
+                <param name="value">string</param>
+                is a valid (absolute) URL.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsEmail(System.String)">
+            <summary>
+                Validates whether the provided
+                <param name="value">string</param>
+                is a valid Email Address.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsIpAddress(System.String)">
+            <summary>
+                Validates whether the provided
+                <param name="value">string</param>
+                is a valid IP Address.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsMobile(System.String)">
+            <summary>
+                Validates whether the provided
+                <param name="value">string</param>
+                is a valid IP Address.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsHost(System.String)">
+            <summary>
+                Validates whether the provided
+                <param name="value">string</param>
+                is a valid IP Address.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.IsTelephone(System.String)">
+            <summary>
+                Validates whether the provided
+                <param name="value">string</param>
+                is a valid IP Address.
+            </summary>
+        </member>
+        <member name="M:SSC.API.Common.StringExtension.HideMobileMiddleNumber(System.String)">
+            <summary>
+            隐藏手机号中间号码
+            </summary>
+            <param name="value">string</param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Controllers.AccountController">
+            <summary>
+            帳號管理
+            </summary>
+        </member>
+        <member name="M:SSC.API.Controllers.AccountController.CreateAccount(SSC.Entity.Models.ViewModel.Account.AccountCreateUserViewModel)">
+            <summary>
+            新建帳號
+            </summary>
+            <remarks>新建帳號</remarks>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.AccountController.SignIn(SSC.Entity.Models.APIViewModel.Account.SignInViewModel)">
+            <summary>
+            用戶登入
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Controllers.ApplicationController">
+            <summary>
+            網站功能
+            </summary>
+        </member>
+        <member name="M:SSC.API.Controllers.ApplicationController.LotteryMenu">
+            <summary>
+            獲取彩種選單
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.ApplicationController.Announcements(System.String)">
+            <summary>
+            獲取平台公告
+            </summary>
+            <param name="newsType">公告類型 (All、Alert)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.ApplicationController.WinnerInformations(System.Int32)">
+            <summary>
+            獲取中獎訊息
+            </summary>
+        </member>
+        <member name="M:SSC.API.Controllers.ApplicationController.PopularLottery">
+            <summary>
+            獲取熱門彩種
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.ApplicationController.Promotion">
+            <summary>
+            獲取優惠活動
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.ApplicationController.MobileLottery">
+            <summary>
+            手機購彩
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.BaseApiController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
+            <summary>
+            返回页面错误响应数据
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.BaseApiController.ResponseResult(System.Int32,System.Object,System.Object)">
+            <summary>
+            返回页面响应数据
+            </summary>
+            <param name="statusCode">状态码</param>
+            <param name="data">数据</param>
+            <param name="message">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Controllers.LotteryController">
+            <summary>
+            彩票下注
+            </summary>
+        </member>
+        <member name="M:SSC.API.Controllers.LotteryController.Lottery(System.Int32)">
+            <summary>
+            獲取玩法及頁面初始值
+            </summary>
+            <param name="lottery_id">彩種ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.LotteryController.HistoryLotteryMenu(System.Int32)">
+            <summary>
+            歷史開獎紀錄選單
+            </summary>
+            <param name="open_time"></param>
+            <param name="lotter_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.LotteryController.HistoryLotteryRecord(SSC.Entity.Models.APIViewModel.Lottery.HistoryRecordViewModel)">
+            <summary>
+            查詢歷史開獎紀錄
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.LotteryController.HistoryAnalysisRecord(System.Int32,System.Int32)">
+            <summary>
+            歷史走勢紀錄
+            </summary>
+            <param name="lottery_id">彩種ID</param>
+            <param name="count">查詢筆數</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.LotteryController.ScheduleAndIssueNumber(System.Int32)">
+            <summary>
+            獲取本期開獎時間及上次期號及開獎號碼
+            </summary>
+            <param name="lottery_id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Controllers.MoneyController">
+            <summary>
+            資金
+            </summary>
+        </member>
+        <member name="M:SSC.API.Controllers.MoneyController.UserAnalysis(SSC.Entity.Models.APIViewModel.Money.MoneyQueryViewModel)">
+            <summary>
+            查詢個人統計數據
+            </summary>
+            <param name="queryModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.MoneyController.UserProfitAndLoss(SSC.Entity.Models.APIViewModel.Money.MoneyQueryViewModel)">
+            <summary>
+            查詢個人盈虧
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.MoneyController.UserBalance(SSC.Entity.Models.APIViewModel.Money.MoneyQueryViewModel)">
+            <summary>
+            查詢個人帳戶明細 (指查詢同月資訊)
+            </summary>
+            <param name="queryModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Controllers.OrderController">
+            <summary>
+            投注訂單
+            </summary>
+        </member>
+        <member name="M:SSC.API.Controllers.OrderController.BetRecord(System.String)">
+            <summary>
+            根據注單號，獲取注單紀錄
+            </summary>
+            <param name="order_id">注單號</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.OrderController.BetRecords(System.Int32)">
+            <summary>
+            獲取注單紀錄
+            </summary>
+            <param name="current_page">目前頁數</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.OrderController.GetLastOpenNumber(System.Int32)">
+            <summary>
+            最新五期開獎號碼
+            </summary>
+            <param name="lottery_id">彩種ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.OrderController.UserBetRecord(SSC.Entity.Models.APIViewModel.Order.OrderQueryViewModel)">
+            <summary>
+            查詢個人遊戲紀錄
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.OrderController.CancelOrdedr(System.String)">
+            <summary>
+            撤銷注單
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.SystemController.UserWithdraw(SSC.Entity.Models.APIViewModel.System.WithdrawViewModel)">
+            <summary>
+            用戶申請提現 (flag參數請帶withdraw )
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.SystemController.PlatformBalanceItems">
+            <summary>
+            
+            </summary>
+            <param name="platform_code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.SystemController.PlatformBalance(System.String)">
+            <summary>
+            遊戲平台餘額(AG，KY...)
+            </summary>
+            <param name="platform_code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.SystemController.TransferPlatformItems">
+            <summary>
+            獲取提供平台轉帳選單及操作代號
+            </summary>
+        </member>
+        <member name="M:SSC.API.Controllers.SystemController.TransferMoney(SSC.Entity.Models.APIViewModel.System.TransferMoneyViewModel)">
+            <summary>
+            平台轉帳
+            </summary>
+            <param name="mondel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Controllers.UserController">
+            <summary>
+            會員(須帶JWT)
+            </summary>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.User">
+            <summary>
+            用戶資訊 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UserMoney">
+            <summary>
+            用戶錢包餘額
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UserBankAccount">
+            <summary>
+            獲取綁定銀行卡資訊
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UserBindBankAccount(SSC.Entity.Models.APIViewModel.User.UserBankBindingModel)">
+            <summary>
+            用戶綁定銀行卡
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UnReadMessages">
+            <summary>
+            獲取未讀訊息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.DepositUrl">
+            <summary>
+            充值地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UserBankInformation">
+            <summary>
+            獲取用戶銀行資訊
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UserSetting">
+            <summary>
+            用戶設定
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UpdateUserPassword(SSC.Entity.Models.APIViewModel.User.UpdateLoginPassword)">
+            <summary>
+            更新登入密碼
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UpdateUserName(System.String)">
+            <summary>
+            修改用戶暱稱
+            </summary>
+            <param name="nick_name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UpdateUserBankPassword(SSC.Entity.Models.APIViewModel.User.UpdateBankPassword)">
+            <summary>
+            更新資金密碼
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UpdateAlertSetting(System.String,System.String)">
+            <summary>
+            開獎與封單聲音提示 (type)
+            </summary>
+            <param name="type">聲音提示( type=bet_alert )，內容確認框 (type:show_bet_confirm)</param>
+            <param name="setting">開:1，關:0</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UserAddress">
+            <summary>
+            獲取用戶地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UpdateUserAddress(SSC.Entity.Models.APIViewModel.User.UserAddressViewModel)">
+            <summary>
+            更新用户地址
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UserMessages(System.Int32)">
+            <summary>
+            獲取用戶消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.UserRecomendUrl">
+            <summary>
+            獲取推薦好友連結
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.UserController.Logout">
+            <summary>
+            登出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Filters.ActionLoginAttribute">
+            <summary>
+            驗證用戶登入狀態
+            </summary>
+        </member>
+        <member name="M:SSC.API.Filters.ActionTimerAttribute.OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            回傳執行API秒數及網站名稱
+            </summary>
+            <param name="actionExecutedContext"></param>
+        </member>
+        <member name="T:SSC.API.Filters.AddChallengeOnUnauthorizedResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SSC.API.Filters.AddChallengeOnUnauthorizedResult.#ctor(System.Net.Http.Headers.AuthenticationHeaderValue,System.Web.Http.IHttpActionResult)">
+            <summary>
+            
+            </summary>
+            <param name="challenge"></param>
+            <param name="innerResult"></param>
+        </member>
+        <member name="P:SSC.API.Filters.AddChallengeOnUnauthorizedResult.Challenge">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SSC.API.Filters.AddChallengeOnUnauthorizedResult.InnerResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SSC.API.Filters.AddChallengeOnUnauthorizedResult.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            执行授权
+            </summary>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Filters.AuthenticationFailureResult">
+            <summary>
+            授權失敗結果
+            </summary>
+        </member>
+        <member name="M:SSC.API.Filters.AuthenticationFailureResult.#ctor(System.Object,System.Net.Http.HttpRequestMessage)">
+            <summary>
+            建構函式
+            </summary>
+            <param name="jsonContent"></param>
+            <param name="request"></param>
+        </member>
+        <member name="P:SSC.API.Filters.AuthenticationFailureResult.JsonContent">
+            <summary>
+            JSON內容
+            </summary>
+        </member>
+        <member name="P:SSC.API.Filters.AuthenticationFailureResult.Request">
+            <summary>
+            請求
+            </summary>
+        </member>
+        <member name="M:SSC.API.Filters.AuthenticationFailureResult.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            執行請求
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Filters.HttpAuthenticationChallengeContextExtensions.ChallengeWith(System.Web.Http.Filters.HttpAuthenticationChallengeContext,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="scheme"></param>
+        </member>
+        <member name="M:SSC.API.Filters.HttpAuthenticationChallengeContextExtensions.ChallengeWith(System.Web.Http.Filters.HttpAuthenticationChallengeContext,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="scheme"></param>
+            <param name="parameter"></param>
+        </member>
+        <member name="M:SSC.API.Filters.HttpAuthenticationChallengeContextExtensions.ChallengeWith(System.Web.Http.Filters.HttpAuthenticationChallengeContext,System.Net.Http.Headers.AuthenticationHeaderValue)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="challenge"></param>
+        </member>
+        <member name="T:SSC.API.Filters.JwtAuthenticationAttribute">
+            <summary>
+            JWT 授權驗證
+            </summary>
+        </member>
+        <member name="P:SSC.API.Filters.JwtAuthenticationAttribute.Realm">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SSC.API.Filters.JwtAuthenticationAttribute.AllowMultiple">
+            <summary>
+            该值指示是否可以为单个程序元素指定多个已指示特性的实例。
+            </summary>
+        </member>
+        <member name="M:SSC.API.Filters.JwtAuthenticationAttribute.AuthenticateAsync(System.Web.Http.Filters.HttpAuthenticationContext,System.Threading.CancellationToken)">
+            <summary>
+            驗證憑證
+            </summary>
+            <param name="context">HttpAuthenticationContext</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Filters.JwtAuthenticationAttribute.ValidateToken(System.String,System.String@)">
+            <summary>
+            驗證JWT Token
+            </summary>
+            <param name="token">JWT Token</param>
+            <param name="guid">用户Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Filters.JwtAuthenticationAttribute.AuthenticateJwtToken(System.String)">
+            <summary>
+            通過JWT Token獲取安全身份
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Filters.JwtAuthenticationAttribute.ChallengeAsync(System.Web.Http.Filters.HttpAuthenticationChallengeContext,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.JwtManager">
+            <summary>
+            JWT 管理
+            </summary>
+        </member>
+        <member name="F:SSC.API.JwtManager.secretKey">
+            <summary>
+            Use the below code to generate symmetric Secret Key
+            var hmac = new System.Security.Cryptography.HMACSHA256();
+            var key = Convert.ToBase64String(hmac.Key);
+            </summary>
+        </member>
+        <member name="M:SSC.API.JwtManager.GenerateToken(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            建立Token
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="guid">用户Token</param>
+            <param name="role">用户角色</param>
+            <param name="expireMinutes">过期时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.JwtManager.GetPrincipal(System.String)">
+            <summary>
+            建立憑證
+            </summary>
+            <param name="token">JWT Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.JwtManager.GetUserId(System.String)">
+            <summary>
+            通过JWT Token 获取用户ID
+            </summary>
+            <param name="jwtToken">JWT Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.JwtManager.GetToken(System.String)">
+            <summary>
+            通过JWT Token 获取用户Token
+            </summary>
+            <param name="jwtToken">JWT Token</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.JwtManager.GetUserType(System.String)">
+            <summary>
+            通过JWT Token 获取用户类型，1总代，2代理，3会员
+            </summary>
+            <param name="jwtToken">JWT Token</param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Service.AccountService">
+            <summary>
+            用戶服務
+            </summary>
+        </member>
+        <member name="M:SSC.API.Service.AccountService.CreateAccount(SSC.Entity.Models.ViewModel.Account.AccountCreateUserViewModel)">
+            <summary>
+            新增帳號
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.AccountService.SignIn(SSC.Entity.Models.APIViewModel.Account.SignInViewModel)">
+            <summary>
+            登入
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Service.ApplicationService">
+            <summary>
+            頁面顯示資料
+            </summary>
+        </member>
+        <member name="M:SSC.API.Service.ApplicationService.GetLotteryMenu">
+            <summary>
+            獲取彩種選單
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.ApplicationService.GetAnnouncements(System.String)">
+            <summary>
+            获取所有公告
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.ApplicationService.GetWinnerInformations(System.Int32)">
+            <summary>
+            獲取中獎訊息
+            </summary>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.ApplicationService.GetPopularLottery">
+            <summary>
+            獲取熱門彩種
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.ApplicationService.GetPromotion">
+            <summary>
+            獲取優惠活動
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.ApplicationService.GetMobileUrl">
+            <summary>
+            手機購彩
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Service.BetService">
+            <summary>
+            彩種
+            </summary>
+        </member>
+        <member name="M:SSC.API.Service.BetService.#ctor(System.String)">
+            <summary>
+            建構函式
+            </summary>
+            <param name="jwtToken"></param>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetLottery(System.Int32)">
+            <summary>
+            獲取玩法及頁面初始值
+            </summary>
+            <param name="lottery_id">彩種ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetLotteryDefaultValue(System.Int32)">
+            <summary>
+            根據彩種獲取頁面預設值
+            </summary>
+            <param name="lottery_class_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.QueryHistoryAnalysis(System.Int32,System.Int32)">
+            <summary>
+            歷史走勢紀錄
+            </summary>
+            <param name="lottery_id"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetHistoryLotteryMenu(System.Int32)">
+            <summary>
+            歷史紀錄選單
+            </summary>
+            <param name="open_time"></param>
+            <param name="lotter_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetScheduleAndIssueNumber(System.Int32)">
+            <summary>
+            獲取本期開獎時間及上次期號及開獎號碼
+            </summary>
+            <param name="lottery_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.QueryHistoryLotteryRecord(SSC.Entity.Models.APIViewModel.Lottery.HistoryRecordViewModel)">
+            <summary>
+            查詢歷史紀錄
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetPK10HistoryRecord(System.String,System.String,System.Int32)">
+            <summary>
+            開獎紀錄-PK10
+            </summary>
+            <param name="lottery_id"></param>
+            <param name="open_time"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetK8HistoryRecord(System.String,System.String,System.Int32)">
+            <summary>
+            開獎紀錄-快樂8
+            </summary>
+            <param name="lottery_id"></param>
+            <param name="open_time"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetK3HistoryRecord(System.String,System.String,System.Int32)">
+            <summary>
+            開獎紀錄-快3
+            </summary>
+            <param name="lottery_id"></param>
+            <param name="open_time"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetHK6HistoryRecord(System.String,System.String,System.Int32)">
+            <summary>
+            開獎紀錄-六合彩
+            </summary>
+            <param name="lottery_id"></param>
+            <param name="open_time"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.Get3DHistoryRecord(System.String,System.String,System.Int32)">
+            <summary>
+            開獎紀錄-3D
+            </summary>
+            <param name="lottery_id"></param>
+            <param name="open_time"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetSSCHistoryRecord(System.String,System.String,System.Int32)">
+            <summary>
+            開獎紀錄-時時彩
+            </summary>
+            <param name="lottery_id"></param>
+            <param name="open_time"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.Get11x5HistoryRecord(System.String,System.String,System.Int32)">
+            <summary>
+            開獎紀錄-11選5
+            </summary>
+            <param name="lottery_id"></param>
+            <param name="open_time"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Service.EmailService">
+            <summary>
+            寄送信件
+            </summary>
+        </member>
+        <member name="M:SSC.API.Service.EmailService.Send(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            发送会员注册后邮件
+            </summary>
+            <param name="host">服务器</param>
+            <param name="account">用户名</param>
+            <param name="password">密码</param>
+            <param name="mailTo">接收人</param>
+            <param name="displayName">显示名</param>
+            <param name="subject">标题</param>
+            <param name="body">内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.EmailService.BatchSend(System.String,System.String[],System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            批量发送邮件
+            </summary>
+            <param name="sentFilePath"></param>
+        </member>
+        <member name="M:SSC.API.Service.MoneyService.#ctor(System.String)">
+            <summary>
+            建構函式
+            </summary>
+            <param name="jwtToken"></param>
+        </member>
+        <member name="M:SSC.API.Service.MoneyService.GetUserAnalysis(SSC.Entity.Models.APIViewModel.Money.MoneyQueryViewModel)">
+            <summary>
+            用戶統計數據
+            </summary>
+            <param name="queryModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.MoneyService.GetUserProfitAndLoss(SSC.Entity.Models.APIViewModel.Money.MoneyQueryViewModel)">
+            <summary>
+            用戶盈虧數據
+            </summary>
+            <param name="queryModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.MoneyService.GetUserBalance(SSC.Entity.Models.APIViewModel.Money.MoneyQueryViewModel)">
+            <summary>
+            用戶帳戶明細
+            </summary>
+            <param name="queryModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Service.OrderService">
+            <summary>
+            下注訂單
+            </summary>
+        </member>
+        <member name="M:SSC.API.Service.OrderService.#ctor(System.String)">
+            <summary>
+            建構函式
+            </summary>
+            <param name="jwtToken"></param>
+        </member>
+        <member name="M:SSC.API.Service.OrderService.GetBetRecord(System.String,System.Int32)">
+            <summary>
+            獲取下注紀錄
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.OrderService.GetLastOpenNumber(System.Int32)">
+            <summary>
+            最新五期開獎號碼
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.OrderService.GetUserBetRecord(SSC.Entity.Models.APIViewModel.Order.OrderQueryViewModel)">
+            <summary>
+            查詢個人遊戲紀錄
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.OrderService.CancelOrder(System.String)">
+            <summary>
+            撤銷注單
+            </summary>
+            <param name="order_id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Service.SystemService">
+            <summary>
+            系統服務
+            </summary>
+        </member>
+        <member name="M:SSC.API.Service.SystemService.#ctor(System.String)">
+            <summary>
+            建構函式
+            </summary>
+            <param name="jwtToken"></param>
+        </member>
+        <member name="M:SSC.API.Service.SystemService.SendRegSMS(System.String,System.String)">
+            <summary>
+            寄送短信服務
+            </summary>
+            <param name="userTel">用戶註冊電話</param>
+            <param name="userId">用戶ID</param>
+        </member>
+        <member name="M:SSC.API.Service.SystemService.UserWithdraw(SSC.Entity.Models.APIViewModel.System.WithdrawViewModel)">
+            <summary>
+            用戶申請提現
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.SystemService.GamePlatformBalance(System.String)">
+            <summary>
+            獲取其他平台餘額
+            </summary>
+            <param name="platform_code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.SystemService.TransferPlatformItems">
+            <summary>
+            獲取提供平台轉帳選單及操作代號
+            </summary>
+        </member>
+        <member name="M:SSC.API.Service.SystemService.TransferMoney(SSC.Entity.Models.APIViewModel.System.TransferMoneyViewModel,System.String)">
+            <summary>
+            平台轉帳
+            </summary>
+            <param name="mondel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSC.API.Service.UserService">
+            <summary>
+            用戶資訊
+            </summary>
+        </member>
+        <member name="M:SSC.API.Service.UserService.#ctor(System.String)">
+            <summary>
+            建構函式
+            </summary>
+            <param name="jwtToken"></param>
+        </member>
+        <member name="M:SSC.API.Service.UserService.GetUser">
+            <summary>
+            用戶訊息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UserBankAccount">
+            <summary>
+            獲取綁定銀行卡資訊
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UserBindBank(SSC.Entity.Models.APIViewModel.User.UserBankBindingModel)">
+            <summary>
+            綁定用戶銀行卡
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UpdateUserName(System.String)">
+            <summary>
+            更新用戶暱稱
+            </summary>
+            <param name="nick_name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UpdateUserPassword(SSC.Entity.Models.APIViewModel.User.UpdateLoginPassword)">
+            <summary>
+            修改登入密碼
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UpdateUserBankPassword(SSC.Entity.Models.APIViewModel.User.UpdateBankPassword)">
+            <summary>
+            修改資金密碼
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UpdateAlertSetting(System.String,System.String)">
+            <summary>
+            更新系統設置
+            </summary>
+            <param name="type"></param>
+            <param name="setting"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.GetUserAddress">
+            <summary>
+            用戶地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UpdateUserAddress(SSC.Entity.Models.APIViewModel.User.UserAddressViewModel)">
+            <summary>
+            更新用戶地址
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.GetUserMoney">
+            <summary>
+            用戶錢包餘額
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.GetUnReadMessages">
+            <summary>
+            獲取未讀訊息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.GetDepositUrl">
+            <summary>
+            充值地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UserMessages(System.Int32)">
+            <summary>
+            獲取用戶消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UserRecomendUrl">
+            <summary>
+            推薦好友連結
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.Logout">
+            <summary>
+            登出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.UserService.UserBankInformation">
+            <summary>
+            用戶綁定帳戶資訊
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:ErrorEnum.System_Error">
+            <summary>
+            系統錯誤
+            </summary>
+        </member>
+        <member name="F:ErrorEnum.No_Login">
+            <summary>
+            未登入
+            </summary>
+        </member>
+        <member name="F:ErrorEnum.Parameter_Error">
+            <summary>
+            參數錯誤
+            </summary>
+        </member>
+        <member name="F:ErrorEnum.Validate_Error">
+            <summary>
+            參數內容錯誤
+            </summary>
+        </member>
+    </members>
+</doc>
