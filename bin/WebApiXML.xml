@@ -680,7 +680,7 @@
             </summary>
             <param name="statusCode">状态码</param>
             <param name="data">数据</param>
-            <param name="message">消息内容</param>
+            <param name="error">錯誤訊息</param>
             <returns></returns>
         </member>
         <member name="T:SSC.API.Controllers.LotteryController">
