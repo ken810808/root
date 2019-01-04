@@ -724,6 +724,13 @@
             <param name="lottery_id"></param>
             <returns></returns>
         </member>
+        <member name="M:SSC.API.Controllers.LotteryController.Betting(SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+            <summary>
+            投注
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="T:SSC.API.Controllers.MoneyController">
             <summary>
             資金
@@ -1119,6 +1126,38 @@
             <param name="jwtToken">JWT Token</param>
             <returns></returns>
         </member>
+        <member name="T:SSC.API.Server.Betting.OfficialBettingServer">
+            <summary>
+            官方投注
+            </summary>
+        </member>
+        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.BetPCEGG(System.String,SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+            <summary>
+            投注幸運28(PC蛋蛋)
+            </summary>
+            <param name="currentServerTime">DB目前時間</param>
+            <param name="token"></param>
+            <param name="model">投注內容</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.BetHK6(System.String,SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+            <summary>
+            投注香港六合彩
+            </summary>
+            <param name="currentServerTime">DB目前時間</param>
+            <param name="token"></param>
+            <param name="model">投注內容</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.Bet(System.String,SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+            <summary>
+            投注 (時時彩、11選5、3D...)
+            </summary>
+            <param name="currentServerTime">DB目前時間</param>
+            <param name="token"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="T:SSC.API.Service.AccountService">
             <summary>
             用戶服務
@@ -1296,6 +1335,13 @@
             <param name="lottery_id"></param>
             <param name="open_time"></param>
             <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.Betting(SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+            <summary>
+            投注
+            </summary>
+            <param name="model"></param>
             <returns></returns>
         </member>
         <member name="T:SSC.API.Service.EmailService">
