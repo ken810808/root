@@ -611,9 +611,16 @@
             帳號管理
             </summary>
         </member>
+        <member name="M:SSC.API.Controllers.AccountController.ValidatedCode">
+            <summary>
+            獲取驗證碼 "result": "66199"
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SSC.API.Controllers.AccountController.CreateAccount(SSC.Entity.Models.ViewModel.Account.AccountCreateUserViewModel)">
             <summary>
-            新建帳號
+            新建帳號 
+            "result": "恭喜，您已注册成功！祝您游戏愉快！"
             </summary>
             <remarks>新建帳號</remarks>
             <param name="model"></param>
@@ -621,7 +628,8 @@
         </member>
         <member name="M:SSC.API.Controllers.AccountController.SignIn(SSC.Entity.Models.APIViewModel.Account.SignInViewModel)">
             <summary>
-            用戶登入
+            用戶登入 
+            "result": {"JWT": "JWT"}
             </summary>
             <param name="loginModel"></param>
             <returns></returns>
@@ -634,12 +642,14 @@
         <member name="M:SSC.API.Controllers.ApplicationController.LotteryMenu">
             <summary>
             獲取彩種選單
+            "result": {"lottery": [ { "display_template_name": "时时彩", "template_name": "SSC", "lottery": [ { "lottery_id": 1, "lottery_name": "重庆时时彩", "lottery_english_name": "CQSSC", "template": "SSC" }]}]}
             </summary>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.Announcements(System.String)">
             <summary>
             獲取平台公告
+            "result": [{"sort": 1, "id": 22, "company_id": 0, "news_title": "标题", "news_content": "内容","status": "是", "date_time": "2016-09-20T12:54:16.333", "news_type": 1}]
             </summary>
             <param name="newsType">公告類型 (All、Alert)</param>
             <returns></returns>
@@ -647,23 +657,27 @@
         <member name="M:SSC.API.Controllers.ApplicationController.WinnerInformations(System.Int32)">
             <summary>
             獲取中獎訊息
+            "result": [{"lottery_type":"","issue_number":"","user_name":"","bet_content":"","winning_money":""}]
             </summary>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.PopularLottery">
             <summary>
             獲取熱門彩種
+            "result": [{"lottery_id":"","lottery_name":"","issue_number":"","open_number":"","array_open_number":[]}]
             </summary>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.Promotion">
             <summary>
             獲取優惠活動
+            "result": [{"id": 0,"title": "","small_pic_url": "","big_pic_url": "","active_time": "","active_object": "","profile": "", "detail": null, "jump_url": "", "status": null, "date_time": null}]
             </summary>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.MobileLottery">
             <summary>
             手機購彩
+            "result": [{"android_mobile_download_url": 0,"android_mobile_h5_download_url": "","ios_mobile_download_url": "","ios_mobile_h5_download_url": ""}]
             </summary>
             <returns></returns>
         </member>
@@ -691,6 +705,7 @@
         <member name="M:SSC.API.Controllers.LotteryController.Lottery(System.Int32)">
             <summary>
             獲取玩法及頁面初始值
+             "result":{"default_value":"","bet_type_list":"","lottery_class_id":"","lottery_id":"","lottery_name":""}
             </summary>
             <param name="lottery_id">彩種ID</param>
             <returns></returns>
@@ -1163,6 +1178,12 @@
             用戶服務
             </summary>
         </member>
+        <member name="M:SSC.API.Service.AccountService.CreateValidateCode">
+            <summary>
+            生成驗證碼
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SSC.API.Service.AccountService.CreateAccount(SSC.Entity.Models.ViewModel.Account.AccountCreateUserViewModel)">
             <summary>
             新增帳號
@@ -1170,7 +1191,7 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:SSC.API.Service.AccountService.SignIn(SSC.Entity.Models.APIViewModel.Account.SignInViewModel)">
+        <member name="M:SSC.API.Service.AccountService.SignIn(SSC.Entity.Models.APIViewModel.Account.SignInViewModel,System.String)">
             <summary>
             登入
             </summary>
