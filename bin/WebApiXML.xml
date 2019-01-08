@@ -739,9 +739,16 @@
             <param name="lottery_id"></param>
             <returns></returns>
         </member>
-        <member name="M:SSC.API.Controllers.LotteryController.Betting(SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+        <member name="M:SSC.API.Controllers.LotteryController.OfficialModeBetting(SSC.Entity.Models.APIViewModel.Lottery.OfficialBettingViewModel)">
             <summary>
-            投注
+            官方投注
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Controllers.LotteryController.CreditModeBetting(SSC.Entity.Models.APIViewModel.Lottery.CreditModeBettingViewModel)">
+            <summary>
+            信用模式
             </summary>
             <param name="model"></param>
             <returns></returns>
@@ -1146,7 +1153,7 @@
             官方投注
             </summary>
         </member>
-        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.BetPCEGG(System.String,SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.BetPCEGG(System.String,SSC.Entity.Models.APIViewModel.Lottery.OfficialBettingViewModel)">
             <summary>
             投注幸運28(PC蛋蛋)
             </summary>
@@ -1155,7 +1162,7 @@
             <param name="model">投注內容</param>
             <returns></returns>
         </member>
-        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.BetHK6(System.String,SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.BetHK6(System.String,SSC.Entity.Models.APIViewModel.Lottery.OfficialBettingViewModel)">
             <summary>
             投注香港六合彩
             </summary>
@@ -1164,11 +1171,10 @@
             <param name="model">投注內容</param>
             <returns></returns>
         </member>
-        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.Bet(System.String,SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+        <member name="M:SSC.API.Server.Betting.OfficialBettingServer.Bet(System.String,SSC.Entity.Models.APIViewModel.Lottery.OfficialBettingViewModel)">
             <summary>
             投注 (時時彩、11選5、3D...)
             </summary>
-            <param name="currentServerTime">DB目前時間</param>
             <param name="token"></param>
             <param name="model"></param>
             <returns></returns>
@@ -1358,9 +1364,16 @@
             <param name="count"></param>
             <returns></returns>
         </member>
-        <member name="M:SSC.API.Service.BetService.Betting(SSC.Entity.Models.APIViewModel.Lottery.BettingViewModel)">
+        <member name="M:SSC.API.Service.BetService.OfficialBetting(SSC.Entity.Models.APIViewModel.Lottery.OfficialBettingViewModel)">
             <summary>
-            投注
+            官方模式投注
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.CreditBetting(SSC.Entity.Models.APIViewModel.Lottery.CreditModeBettingViewModel)">
+            <summary>
+            信用模式投注
             </summary>
             <param name="model"></param>
             <returns></returns>
