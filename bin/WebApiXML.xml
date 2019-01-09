@@ -613,8 +613,9 @@
         </member>
         <member name="M:SSC.API.Controllers.AccountController.ValidatedCode">
             <summary>
-            獲取驗證碼 "result": "66199"
+            獲取驗證碼 
             </summary>
+            <remarks></remarks>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.AccountController.CreateAccount(SSC.Entity.Models.ViewModel.Account.AccountCreateUserViewModel)">
@@ -642,42 +643,36 @@
         <member name="M:SSC.API.Controllers.ApplicationController.LotteryMenu">
             <summary>
             獲取彩種選單
-            "result": {"lottery": [ { "display_template_name": "时时彩", "template_name": "SSC", "lottery": [ { "lottery_id": 1, "lottery_name": "重庆时时彩", "lottery_english_name": "CQSSC", "template": "SSC" }]}]}
             </summary>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.Announcements(System.String)">
             <summary>
             獲取平台公告
-            "result": [{"sort": 1, "id": 22, "company_id": 0, "news_title": "标题", "news_content": "内容","status": "是", "date_time": "2016-09-20T12:54:16.333", "news_type": 1}]
             </summary>
-            <param name="newsType">公告類型 (All、Alert)</param>
+            <param name="newsType">公告類型 (all、alert)</param>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.WinnerInformations(System.Int32)">
             <summary>
             獲取中獎訊息
-            "result": [{"lottery_type":"","issue_number":"","user_name":"","bet_content":"","winning_money":""}]
             </summary>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.PopularLottery">
             <summary>
             獲取熱門彩種
-            "result": [{"lottery_id":"","lottery_name":"","issue_number":"","open_number":"","array_open_number":[]}]
             </summary>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.Promotion">
             <summary>
             獲取優惠活動
-            "result": [{"id": 0,"title": "","small_pic_url": "","big_pic_url": "","active_time": "","active_object": "","profile": "", "detail": null, "jump_url": "", "status": null, "date_time": null}]
             </summary>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.ApplicationController.MobileLottery">
             <summary>
             手機購彩
-            "result": [{"android_mobile_download_url": 0,"android_mobile_h5_download_url": "","ios_mobile_download_url": "","ios_mobile_h5_download_url": ""}]
             </summary>
             <returns></returns>
         </member>
@@ -705,7 +700,6 @@
         <member name="M:SSC.API.Controllers.LotteryController.Lottery(System.Int32)">
             <summary>
             獲取玩法及頁面初始值
-             "result":{"default_value":"","bet_type_list":"","lottery_class_id":"","lottery_id":"","lottery_name":""}
             </summary>
             <param name="lottery_id">彩種ID</param>
             <returns></returns>
@@ -714,8 +708,7 @@
             <summary>
             歷史開獎紀錄選單
             </summary>
-            <param name="open_time"></param>
-            <param name="lotter_id"></param>
+            <param name="lotter_id">彩種ID</param>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.LotteryController.HistoryLotteryRecord(SSC.Entity.Models.APIViewModel.Lottery.HistoryRecordViewModel)">
@@ -824,9 +817,8 @@
         </member>
         <member name="M:SSC.API.Controllers.SystemController.PlatformBalanceItems">
             <summary>
-            
+            平台錢包選項
             </summary>
-            <param name="platform_code"></param>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Controllers.SystemController.PlatformBalance(System.String)">
@@ -845,7 +837,7 @@
             <summary>
             平台轉帳
             </summary>
-            <param name="mondel"></param>
+            <param name="model"></param>
             <returns></returns>
         </member>
         <member name="T:SSC.API.Controllers.UserController">
@@ -892,12 +884,6 @@
         <member name="M:SSC.API.Controllers.UserController.UserBankInformation">
             <summary>
             獲取用戶銀行資訊
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SSC.API.Controllers.UserController.UserSetting">
-            <summary>
-            用戶設定
             </summary>
             <returns></returns>
         </member>
@@ -1489,6 +1475,12 @@
             用戶申請提現
             </summary>
             <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.SystemService.GetPlatformBalanceItems">
+            <summary>
+            獲取平台選項
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SSC.API.Service.SystemService.GamePlatformBalance(System.String)">
