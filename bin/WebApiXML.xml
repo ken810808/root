@@ -1448,7 +1448,7 @@
         </member>
         <member name="M:SSC.API.Service.OrderService.GetLastOpenNumber(System.Int32)">
             <summary>
-            最新五期開獎號碼
+            最新五期開獎號碼(期號及號碼)
             </summary>
             <returns></returns>
         </member>
