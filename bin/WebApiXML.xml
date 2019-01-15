@@ -746,6 +746,13 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:SSC.API.Controllers.LotteryController.GetLotteryRates(System.Int32)">
+            <summary>
+            獲取玩法賠率
+            </summary>
+            <param name="lottery_id">彩種ID</param>
+            <returns></returns>
+        </member>
         <member name="T:SSC.API.Controllers.MoneyController">
             <summary>
             資金
@@ -1183,11 +1190,12 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:SSC.API.Service.AccountService.SignIn(SSC.Entity.Models.APIViewModel.Account.SignInViewModel,System.String)">
+        <member name="M:SSC.API.Service.AccountService.SignIn(SSC.Entity.Models.APIViewModel.Account.SignInViewModel)">
             <summary>
             登入
             </summary>
             <param name="model"></param>
+            <param name="validate_code">驗證碼</param>
             <returns></returns>
         </member>
         <member name="T:SSC.API.Service.ApplicationService">
@@ -1362,6 +1370,13 @@
             信用模式投注
             </summary>
             <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSC.API.Service.BetService.GetLotteryRates(System.Int32)">
+            <summary>
+            獲取玩法賠率
+            </summary>
+            <param name="lottery_id"></param>
             <returns></returns>
         </member>
         <member name="T:SSC.API.Service.EmailService">
